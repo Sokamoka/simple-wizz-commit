@@ -1,0 +1,15 @@
+{
+  "name": "simple-wizz-commit",
+  "version": "1.0.0",
+  "description": "Commit prompt for Wizz repo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Akos Stegner",
+  "license": "ISC",
+  "dependencies": {
+    "@jsdevtools/ez-spawn": "^3.0.4",
+    "prompts": "^2.4.2"
+  }
+}
