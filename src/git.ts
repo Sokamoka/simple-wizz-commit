@@ -4,7 +4,7 @@ export async function getBranchName() {
   const { stdout: branchName } = await ezSpawn.async(
     `git rev-parse --abbrev-ref HEAD`
   );
-  return branchName;
+  return branchName.trim();
 }
 
 export async function gitCommit(message: string) {

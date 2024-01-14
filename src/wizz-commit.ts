@@ -4,17 +4,25 @@ import { consola } from "consola";
 import type { WCommitOptions } from "./types/w-commit-options";
 import { getInputs } from "./inputs";
 import { getBranchName, gitCommit } from "./git";
+import { InputParams } from "./types/input-params";
 
 export async function wizzCommit(arg: WCommitOptions) {
   console.log({ arg });
   const branchName = await getBranchName();
   consola.info(`Current branch: ${branchName}`);
 
+  const storedDefault = {
+    taskId: undefined,
+    type: 0,
+    message: "",
+  } as InputParams;
+
   if (arg.store) {
     // get stored data
+    // storedDefault.taskId = 1234567;
   }
 
-  const inputs = getInputs();
+  const inputs = getInputs(storedDefault);
   const response = await prompts(inputs);
 
   const message = `#${response.taskId} ${response.type}(${branchName}): ${response.message}`;

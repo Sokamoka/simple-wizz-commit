@@ -3,7 +3,8 @@ import { parseArgs } from "./parse-args";
 import { ExitCode } from "./exit-code";
 import { version as packageVersion } from "../../package.json";
 import { wizzCommit } from "../wizz-commit";
-import type { ProcessError } from "@jsdevtools/ez-spawn";
+// import type { ProcessError } from "@jsdevtools/ez-spawn";
+
 /**
  * The main entry point of the CLI
  */
@@ -32,7 +33,6 @@ export async function main(): Promise<void> {
 }
 
 function errorHandler(error: Error): void {
-  console.log("errorHandler", error.stack);
   let message = error.message || String(error);
 
   if (process.env.DEBUG || process.env.NODE_ENV === "development")

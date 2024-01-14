@@ -1,10 +1,12 @@
-export function getInputs() {
+import type { InputParams } from "./types/input-params";
+
+export function getInputs(defaults: InputParams) {
   return [
     {
       type: "number",
       name: "taskId",
       message: "Task Id",
-      initial: 12345
+      initial: defaults.taskId,
     },
     {
       type: "select",
@@ -18,13 +20,13 @@ export function getInputs() {
         },
         { title: "fix", value: "fix" },
       ],
-      initial: 0,
+      initial: defaults.type,
     },
     {
       type: "text",
       name: "message",
       message: "Commit message",
-      initial: "initial commit massage"
+      initial: defaults.message,
     },
   ];
 }
