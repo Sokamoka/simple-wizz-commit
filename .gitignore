@@ -9,6 +9,7 @@ Thumbs.db
 .netbeans
 nbproject
 .node_history
+.env
 
 # IDEs & Text Editors
 .idea
