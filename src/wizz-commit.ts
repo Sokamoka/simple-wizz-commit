@@ -1,24 +1,25 @@
 import prompts from "prompts";
-import * as ezSpawn from "@jsdevtools/ez-spawn";
+// import * as ezSpawn from "@jsdevtools/ez-spawn";
 import { consola } from "consola";
 import type { WCommitOptions } from "./types/w-commit-options";
 import { getInputs } from "./inputs";
+import { getBranchName, gitCommit } from "./git";
 
-export async function wizzCommit(arg: WCommitOptions | string = {}) {
+export async function wizzCommit(arg: WCommitOptions) {
   console.log({ arg });
-
-  let { stdout: branchName } = await ezSpawn.async(
-    `git rev-parse --abbrev-ref HEAD`
-  );
+  const branchName = await getBranchName();
   consola.info(`Current branch: ${branchName}`);
-  
+
+  if (arg.store) {
+    // get stored data
+  }
+
   const inputs = getInputs();
   const response = await prompts(inputs);
-  console.log(response);
-  consola.box(
-    `git commit -m "#${response.taskId} ${response.type}(${branchName}): ${response.message}"`
-  );
-  const final = await prompts({
+
+  const message = `#${response.taskId} ${response.type}(${branchName}): ${response.message}`;
+  consola.box(`git commit -m "${message}"`);
+  const confirm = await prompts({
     type: "toggle",
     name: "value",
     message: "Can you confirm?",
@@ -26,5 +27,13 @@ export async function wizzCommit(arg: WCommitOptions | string = {}) {
     active: "yes",
     inactive: "no",
   });
-  console.log(final);
+  if (!confirm.value) process.exit(1);
+
+  console.log(response);
+  consola.start("Commit...");
+  await gitCommit(message);
+  if (arg.store) {
+    // set stored data
+  }
+  consola.success("Commit finished!");
 }
