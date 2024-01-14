@@ -2,9 +2,19 @@
   "name": "simple-wizz-commit",
   "version": "1.0.0",
   "description": "Commit prompt for Wizz repo",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "bumpp": "bin/wcommit.js"
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint .",
+    "wcommit": "esno src/cli/run.ts"
   },
   "author": "Akos Stegner",
   "license": "ISC",
@@ -14,6 +24,12 @@
     "prompts": "^2.4.2"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^2.6.2",
+    "@types/node": "^20.11.0",
+    "@types/prompts": "^2.4.9",
+    "cac": "^6.7.14",
+    "eslint": "^8.56.0",
+    "esno": "^4.0.0",
     "typescript": "^5.3.3"
   }
 }
