@@ -24,7 +24,8 @@
   "scripts": {
     "lint": "eslint .",
     "build": "tsup src/index.ts src/cli/index.ts --format esm,cjs --dts --clean",
-    "wcommit": "esno src/cli/run.ts"
+    "wcommit": "esno src/cli/run.ts",
+    "release": "bumpp && pnpm publish --access public --dry-run"
   },
   "dependencies": {
     "@jsdevtools/ez-spawn": "^3.0.4",
@@ -35,6 +36,7 @@
     "@antfu/eslint-config": "^2.6.2",
     "@types/node": "^20.11.0",
     "@types/prompts": "^2.4.9",
+    "bumpp": "^9.2.1",
     "cac": "^6.7.14",
     "eslint": "^8.56.0",
     "esno": "^4.0.0",
