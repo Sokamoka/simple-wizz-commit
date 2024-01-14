@@ -1,5 +1,6 @@
 const prompts = require("prompts");
 const ezSpawn = require("@jsdevtools/ez-spawn");
+const { consola } = require("consola");
 
 (async () => {
   const q = [
@@ -29,13 +30,15 @@ const ezSpawn = require("@jsdevtools/ez-spawn");
     },
   ];
 
-  let process = await ezSpawn.async(`git rev-parse --abbrev-ref HEAD`);
-  console.log(process.stdout);
+  let { stdout: branchName } = await ezSpawn.async(
+    `git rev-parse --abbrev-ref HEAD`
+  );
+  consola.info(`Current branch: ${branchName}`);
 
   const response = await prompts(q);
   console.log(response);
-  console.log(
-    `#${response.taskId} ${response.type}(branch): ${response.message}`
+  consola.box(
+    `#${response.taskId} ${response.type}(${branchName}): ${response.message}`
   );
   const final = await prompts({
     type: "toggle",

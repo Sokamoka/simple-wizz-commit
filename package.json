@@ -10,6 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "@jsdevtools/ez-spawn": "^3.0.4",
+    "consola": "^3.2.3",
     "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
   }
 }
