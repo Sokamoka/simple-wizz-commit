@@ -10,6 +10,7 @@ import type { WCommitOptions } from "../types/w-commit-options";
 export interface ParsedArgs {
   help?: boolean;
   version?: boolean;
+  clear?: boolean;
   options: WCommitOptions;
 }
 
@@ -28,13 +29,12 @@ export async function parseArgs(): Promise<ParsedArgs> {
 
     const result = cli.parse();
     const args = result.options;
-    console.log(result.options);
 
     const parsedArgs: ParsedArgs = {
       help: args.help as boolean,
       version: args.version as boolean,
+      clear: args.clear as boolean,
       options: {
-        clear: args.clear,
         store: !args.noStore && args.store,
       },
     };
