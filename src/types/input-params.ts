@@ -1,5 +1,5 @@
 export interface InputParams {
-  taskId: number | null;
-  type: number;
-  message: string;
+  taskId: number | undefined
+  type: number
+  message: string | undefined
 }

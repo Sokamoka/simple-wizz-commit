@@ -23,6 +23,7 @@
   ],
   "scripts": {
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "build": "tsup src/index.ts src/cli/index.ts --format esm,cjs --dts --clean",
     "wcommit": "esno src/cli/run.ts",
     "release": "bumpp && pnpm publish --access public"
