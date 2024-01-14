@@ -1,7 +1,6 @@
 import process from 'node:process'
 import prompts from 'prompts'
-
-// import * as ezSpawn from "@jsdevtools/ez-spawn";
+import type { PromptObject } from 'prompts'
 import { consola } from 'consola'
 import type { WCommitOptions } from './types/w-commit-options'
 import { getInputs } from './inputs'
@@ -24,7 +23,7 @@ export async function wizzCommit(arg: WCommitOptions) {
     // storedDefault.taskId = 1234567;
   }
 
-  const inputs = getInputs(storedDefault)
+  const inputs = getInputs(storedDefault) as PromptObject[]
   const response = await prompts(inputs)
 
   const message = `#${response.taskId} ${response.type}(${branchName}): ${response.message}`

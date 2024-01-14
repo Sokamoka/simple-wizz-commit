@@ -8,5 +8,5 @@ export async function getBranchName() {
 }
 
 export async function gitCommit(message: string) {
-  await ezSpawn.async('git', ['commit', '--dry-run', '-m', message])
+  await ezSpawn.async('git', ['commit', '-m', message])
 }
