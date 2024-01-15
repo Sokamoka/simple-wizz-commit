@@ -9,8 +9,8 @@ dependencies:
     specifier: ^3.0.4
     version: 3.0.4
   conf:
-    specifier: ^12.0.0
-    version: 12.0.0
+    specifier: ^11.0.2
+    version: 11.0.2
   consola:
     specifier: ^3.2.3
     version: 3.2.3
@@ -1266,19 +1266,18 @@ packages:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
 
-  /conf@12.0.0:
-    resolution: {integrity: sha512-fIWyWUXrJ45cHCIQX+Ck1hrZDIf/9DR0P0Zewn3uNht28hbt5OfGUq8rRWsxi96pZWPyBEd0eY9ama01JTaknA==}
-    engines: {node: '>=18'}
+  /conf@11.0.2:
+    resolution: {integrity: sha512-jjyhlQ0ew/iwmtwsS2RaB6s8DBifcE2GYBEaw2SJDUY/slJJbNfY4GlDVzOs/ff8cM/Wua5CikqXgbFl5eu85A==}
+    engines: {node: '>=14.16'}
     dependencies:
       ajv: 8.12.0
       ajv-formats: 2.1.1(ajv@8.12.0)
       atomically: 2.0.2
       debounce-fn: 5.1.2
-      dot-prop: 8.0.2
+      dot-prop: 7.2.0
       env-paths: 3.0.0
       json-schema-typed: 8.0.1
       semver: 7.5.4
-      uint8array-extras: 0.3.0
     dev: false
 
   /consola@3.2.3:
@@ -1360,11 +1359,11 @@ packages:
       esutils: 2.0.3
     dev: true
 
-  /dot-prop@8.0.2:
-    resolution: {integrity: sha512-xaBe6ZT4DHPkg0k4Ytbvn5xoxgpG0jOS1dYxSOwAHPuNLjP3/OzN0gH55SrLqpx8cBfSaVt91lXYkApjb+nYdQ==}
-    engines: {node: '>=16'}
+  /dot-prop@7.2.0:
+    resolution: {integrity: sha512-Ol/IPXUARn9CSbkrdV4VJo7uCy1I3VuSiWCaFSg+8BdUOzF9n3jefIpcgAydvUZbTdEBZs2vEiTiS9m61ssiDA==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
-      type-fest: 3.13.1
+      type-fest: 2.19.0
     dev: false
 
   /dotenv@16.3.1:
@@ -3306,9 +3305,9 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /type-fest@3.13.1:
-    resolution: {integrity: sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==}
-    engines: {node: '>=14.16'}
+  /type-fest@2.19.0:
+    resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
+    engines: {node: '>=12.20'}
     dev: false
 
   /typescript@5.3.3:
@@ -3320,11 +3319,6 @@ packages:
   /ufo@1.3.2:
     resolution: {integrity: sha512-o+ORpgGwaYQXgqGDwd+hkS4PuZ3QnmqMMxRuajK/a38L6fTpcE5GPIfrf+L/KemFzfUpeUQc1rRS1iDBozvnFA==}
     dev: true
-
-  /uint8array-extras@0.3.0:
-    resolution: {integrity: sha512-erJsJwQ0tKdwuqI0359U8ijkFmfiTcq25JvvzRVc1VP+2son1NJRXhxcAKJmAW3ajM8JSGAfsAXye8g4s+znxA==}
-    engines: {node: '>=18'}
-    dev: false
 
   /undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
