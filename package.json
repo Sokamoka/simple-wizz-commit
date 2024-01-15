@@ -15,7 +15,7 @@
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "bin": {
-    "bumpp": "bin/wcommit.js"
+    "wcommit": "bin/wcommit.js"
   },
   "files": [
     "bin",
@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@jsdevtools/ez-spawn": "^3.0.4",
-    "conf": "^11.0.2",
+    "conf": "^10.2.0",
     "consola": "^3.2.3",
     "defu": "^6.1.4",
     "prompts": "^2.4.2"
