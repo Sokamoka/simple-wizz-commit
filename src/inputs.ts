@@ -15,10 +15,14 @@ export function getInputs(defaults: InputParams) {
       choices: [
         {
           title: 'feat',
-          description: 'This option has a description',
+          description: 'This commit is a new feature',
           value: 'feat',
         },
-        { title: 'fix', value: 'fix' },
+        {
+          title: 'fix',
+          description: 'This commit is an incident fix',
+          value: 'fix',
+        },
       ],
       initial: defaults.type,
     },
