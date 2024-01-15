@@ -1,33 +1,32 @@
 import process from 'node:process'
 import prompts from 'prompts'
+import { defu } from 'defu'
 import type { PromptObject } from 'prompts'
 import { consola } from 'consola'
 import type { WCommitOptions } from './types/w-commit-options'
 import { getInputs } from './inputs'
 import { getBranchName, gitCommit } from './git'
 import type { InputParams } from './types/input-params'
+import { getStoreData, setStoreData } from './store'
+import { InputParamsDefaults } from './config'
 
 export async function wizzCommit(arg: WCommitOptions) {
-  console.log({ arg })
   const branchName = await getBranchName()
   consola.info(`Current branch: ${branchName}`)
 
-  const storedDefault = {
-    taskId: undefined,
-    type: 0,
-    message: undefined,
-  } as InputParams
+  let inputParams = InputParamsDefaults
 
   if (arg.store) {
-    // get stored data
-    // storedDefault.taskId = 1234567;
+    const storedData = getStoreData()
+    inputParams = defu(storedData, inputParams) as InputParams
   }
 
-  const inputs = getInputs(storedDefault) as PromptObject[]
-  const response = await prompts(inputs)
+  const inputs = getInputs(inputParams) as PromptObject[]
+  const answers = await prompts(inputs)
 
-  const message = `#${response.taskId} ${response.type}(${branchName}): ${response.message}`
+  const message = `#${answers.taskId} ${answers.type}(${branchName}): ${answers.message}`
   consola.box(`git commit -m "${message}"`)
+
   const confirm = await prompts({
     type: 'toggle',
     name: 'value',
@@ -39,11 +38,13 @@ export async function wizzCommit(arg: WCommitOptions) {
   if (!confirm.value)
     process.exit(1)
 
-  console.log(response)
+  if (arg.store) {
+    setStoreData({
+      ...answers,
+      type: answers.type === 'fix' ? 1 : 0,
+    } as InputParams)
+  }
   consola.start('Commit...')
   await gitCommit(message)
-  if (arg.store) {
-    // set stored data
-  }
   consola.success('Commit finished!')
 }

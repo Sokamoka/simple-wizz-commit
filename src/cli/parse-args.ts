@@ -24,8 +24,9 @@ export async function parseArgs(): Promise<ParsedArgs> {
 
     cli
       .version(version)
-      .option('-c, --clear', `Clear all stored data`)
-      .option('--no-store', `No store data`)
+      .option('-c, --clear', `Clear all stored params`)
+      .option('-s, --store', `Store commit message params (default: true)`)
+      .option('--no-store', `No store params`)
       .help()
 
     const result = cli.parse()

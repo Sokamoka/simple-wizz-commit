@@ -19,9 +19,11 @@
     "skipLibCheck": true
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "index.d.ts"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    ".vscode"
   ]
 }

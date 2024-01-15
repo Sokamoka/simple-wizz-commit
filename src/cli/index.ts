@@ -2,6 +2,7 @@ import process from 'node:process'
 import { consola } from 'consola'
 import { wizzCommit } from '../wizz-commit'
 import { version as packageVersion } from '../../package.json'
+import { clearStoreData } from '../store'
 import { parseArgs } from './parse-args'
 import { ExitCode } from './exit-code'
 
@@ -26,6 +27,7 @@ export async function main(): Promise<void> {
       process.exit(ExitCode.Success)
     }
     else if (clear) {
+      clearStoreData()
       consola.success('Clear stored data Success')
       process.exit(ExitCode.Success)
     }
