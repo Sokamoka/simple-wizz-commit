@@ -45,9 +45,9 @@ export async function wizzCommit(arg: WCommitOptions) {
       type: answers.type === 'fix' ? 1 : 0,
     } as InputParams)
   }
-  // consola.start('Commit...')
-  // await gitCommit(message)
-  // consola.success('Commit finished!')
+  consola.start('Commit...')
+  await gitCommit(message)
+  consola.success('Commit finished!')
 
   const confirmPush = await prompts({
     type: 'toggle',
