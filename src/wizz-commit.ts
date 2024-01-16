@@ -7,17 +7,23 @@ import type { WCommitOptions } from './types/w-commit-options'
 import { getInputs } from './inputs'
 import { getBranchName, gitCommit } from './git'
 import type { InputParams } from './types/input-params'
-import { getStoreData, setStoreData } from './store'
+import { deleteStoredData, getStoredData, setStoredData } from './store'
 import { InputParamsDefaults } from './config'
 
 export async function wizzCommit(arg: WCommitOptions) {
   const branchName = await getBranchName()
+
   consola.info(`Current branch: ${branchName}`)
+
+  if (arg.clear) {
+    deleteStoredData(branchName)
+    consola.success('Delete stored data successfully')
+  }
 
   let inputParams = InputParamsDefaults
 
   if (arg.store) {
-    const storedData = getStoreData()
+    const storedData = getStoredData(branchName)
     inputParams = defu(storedData, inputParams) as InputParams
   }
 
@@ -39,7 +45,7 @@ export async function wizzCommit(arg: WCommitOptions) {
     process.exit(1)
 
   if (arg.store) {
-    setStoreData({
+    setStoredData(branchName, {
       ...answers,
       type: answers.type === 'fix' ? 1 : 0,
     } as InputParams)
