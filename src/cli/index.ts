@@ -1,4 +1,5 @@
 import process from 'node:process'
+import prompts from 'prompts'
 import { consola } from 'consola'
 import { wizzCommit } from '../wizz-commit'
 import { version as packageVersion } from '../../package.json'
@@ -27,7 +28,16 @@ export async function main(): Promise<void> {
       process.exit(ExitCode.Success)
     }
     else if (clearAll) {
+      if (!await prompts({
+        name: 'yes',
+        type: 'confirm',
+        message: 'Are you sure?',
+        initial: true,
+      }).then(r => r.yes))
+        process.exit(1)
+
       clearStoredData()
+
       consola.success('All stored commit parameters for all branches have been successfully deleted')
       process.exit(ExitCode.Success)
     }
