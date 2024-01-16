@@ -25,8 +25,7 @@ export async function parseArgs(): Promise<ParsedArgs> {
     cli
       .version(version)
       .option('-c, --clear', `Clear all stored params`)
-      .option('-s, --store', `Store commit message params (default: true)`)
-      .option('--no-store', `No store params`)
+      .option('--no-store', `Not use stored commit params`)
       .help()
 
     const result = cli.parse()
@@ -37,7 +36,7 @@ export async function parseArgs(): Promise<ParsedArgs> {
       version: args.version as boolean,
       clear: args.clear as boolean,
       options: {
-        store: !args.noStore && args.store,
+        store: args.store,
       },
     }
 
