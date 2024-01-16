@@ -1,20 +1,29 @@
 import Conf from 'conf'
+import { name } from '../package.json'
 import type { InputParams } from './types/input-params'
 
-export function getStore() {
-  return new Conf({ projectName: 'wcommit' })
-}
+const store = new Conf({ projectName: name })
 
-export function setStoreData(params: InputParams) {
-  getStore().set({
-    wcommit: params,
+export function setStoredData(key: string, params: InputParams) {
+  store.set({
+    wcommit: {
+      [key]: params,
+    },
   })
 }
 
-export function getStoreData() {
-  return getStore().get('wcommit')
+export function getStoredData(key: string) {
+  return store.get(getKey(name, key))
 }
 
-export function clearStoreData() {
-  getStore().clear()
+export function deleteStoredData(key: string) {
+  store.delete(getKey(name, key))
+}
+
+export function clearStoredData() {
+  store.clear()
+}
+
+function getKey(projectName: string, key: string): string {
+  return [projectName, key].join('.')
 }

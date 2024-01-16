@@ -12,6 +12,7 @@ export interface ParsedArgs {
   help?: boolean
   version?: boolean
   clear?: boolean
+  clearAll?: boolean
   options: WCommitOptions
 }
 
@@ -24,9 +25,9 @@ export async function parseArgs(): Promise<ParsedArgs> {
 
     cli
       .version(version)
-      .option('-c, --clear', `Clear all stored params`)
-      .option('-s, --store', `Store commit message params (default: true)`)
-      .option('--no-store', `No store params`)
+      .option('-c, --clear', `Clear all stored commit params from actual branch`)
+      .option('-a, --clear-all', `Clear all stored data`)
+      .option('--no-store', `Not use stored commit params`)
       .help()
 
     const result = cli.parse()
@@ -35,9 +36,10 @@ export async function parseArgs(): Promise<ParsedArgs> {
     const parsedArgs: ParsedArgs = {
       help: args.help as boolean,
       version: args.version as boolean,
-      clear: args.clear as boolean,
+      clearAll: args.clearAll as boolean,
       options: {
-        store: !args.noStore && args.store,
+        store: args.store as boolean,
+        clear: args.clear as boolean,
       },
     }
 

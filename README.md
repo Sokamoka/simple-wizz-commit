@@ -24,21 +24,33 @@ npx wcommit
 
 ## Options
 
-| Option        | Description                                                              |
-| ------------- | ------------------------------------------------------------------------ |
-| -v, --version | Get current version                                                      |
-| -h, --help    | Get options                                                              |
-| -c, --clear   | Clear all stored commit parameters                                       |
-| --no-store    | Saved commit parameters are not loaded and new parameters are not saved. |
+| Option          | Description                                                              |
+| --------------- | ------------------------------------------------------------------------ |
+| -v, --version   | Get current version                                                      |
+| -h, --help      | Get options                                                              |
+| -c, --clear     | Clear all stored commit parameters                                       |
+| -a, --clear-all | Clear all stored data                                                    |
+| --no-store      | Saved commit parameters are not loaded and new parameters are not saved. |
 
 ### Examples
 
 Clear all stored commit parameters:
+
 ```
 wcommit -c
 ```
 
 Saved commit parameters are not loaded and new parameters are not saved:
+
 ```
 wcommit --no-store
+```
+
+## Store
+
+Location:
+
+```
+# MacOs:
+'/Users/<user>/Library/Preferences/wcommit-nodejs/config.json'
 ```
