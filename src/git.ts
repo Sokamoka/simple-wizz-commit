@@ -21,7 +21,6 @@ export async function gitPush(branchName: string) {
   if (!isUpstreamLinked)
     args = args.concat(['-u', 'origin', branchName])
 
-  console.log(args)
   await ezSpawn.async('git', ['push', ...args])
 }
 
