@@ -5,10 +5,11 @@ import type { PromptObject } from 'prompts'
 import { consola } from 'consola'
 import type { WCommitOptions } from './types/w-commit-options'
 import { getInputs } from './inputs'
-import { getBranchName, gitCommit } from './git'
+import { getBranchName, gitCommit, gitPush } from './git'
 import type { InputParams } from './types/input-params'
 import { getStoreData, setStoreData } from './store'
 import { InputParamsDefaults } from './config'
+import { ExitCode } from './cli/exit-code'
 
 export async function wizzCommit(arg: WCommitOptions) {
   const branchName = await getBranchName()
@@ -36,7 +37,7 @@ export async function wizzCommit(arg: WCommitOptions) {
     inactive: 'no',
   })
   if (!confirm.value)
-    process.exit(1)
+    process.exit(ExitCode.FatalError)
 
   if (arg.store) {
     setStoreData({
@@ -44,7 +45,22 @@ export async function wizzCommit(arg: WCommitOptions) {
       type: answers.type === 'fix' ? 1 : 0,
     } as InputParams)
   }
-  consola.start('Commit...')
-  await gitCommit(message)
-  consola.success('Commit finished!')
+  // consola.start('Commit...')
+  // await gitCommit(message)
+  // consola.success('Commit finished!')
+
+  const confirmPush = await prompts({
+    type: 'toggle',
+    name: 'value',
+    message: 'Do you want to git push?',
+    initial: false,
+    active: 'yes',
+    inactive: 'no',
+  })
+  if (!confirmPush.value)
+    process.exit(ExitCode.FatalError)
+
+  consola.start('Push...')
+  await gitPush(branchName)
+  consola.success('Push finished!')
 }
