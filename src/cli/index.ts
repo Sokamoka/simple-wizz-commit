@@ -3,11 +3,9 @@ import prompts from 'prompts'
 import { consola } from 'consola'
 import { wizzCommit } from '../wizz-commit'
 import { version as packageVersion } from '../../package.json'
-import { clearStoredData, deleteStoredData } from '../store'
+import { clearStoredData } from '../store'
 import { parseArgs } from './parse-args'
 import { ExitCode } from './exit-code'
-
-// import type { ProcessError } from "@jsdevtools/ez-spawn";
 
 /**
  * The main entry point of the CLI
