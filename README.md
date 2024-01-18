@@ -4,6 +4,7 @@
 
 Just work on the task, add the changes and you're ready to commit.
 Push it if you want! The `wcommit` also handles the "--set-upstream" push.
+
 The `wcommit` stores the data previously entered, so you don't have to re-enter it every time. If for some reason you don't want a commit to overwrite a previous state or you don't want to use the previous state, use the `--no-store` option.
 
 ## Install
