@@ -14,6 +14,7 @@ import { ExitCode } from './cli/exit-code'
 export async function wizzCommit(arg: WCommitOptions) {
   const branchName = await getBranchName()
 
+  console.clear()
   consola.info(`Current branch: ${branchName}`)
 
   if (arg.clear) {
@@ -45,16 +46,6 @@ export async function wizzCommit(arg: WCommitOptions) {
   if (!confirm.value)
     process.exit(ExitCode.FatalError)
 
-  if (arg.store) {
-    setStoredData(branchName, {
-      ...answers,
-      type: answers.type === 'fix' ? 1 : 0,
-    } as InputParams)
-  }
-  consola.start('Commit...')
-  await gitCommit(message)
-  consola.success('Commit finished!')
-
   const confirmPush = await prompts({
     type: 'toggle',
     name: 'value',
@@ -63,10 +54,21 @@ export async function wizzCommit(arg: WCommitOptions) {
     active: 'yes',
     inactive: 'no',
   })
-  if (!confirmPush.value)
-    process.exit(ExitCode.FatalError)
 
-  consola.start('Push...')
-  await gitPush(branchName)
-  consola.success('Push finished!')
+  if (arg.store) {
+    setStoredData(branchName, {
+      ...answers,
+      type: answers.type === 'fix' ? 1 : 0,
+    } as InputParams)
+  }
+
+  consola.start('Commit...')
+  await gitCommit(message)
+  consola.success('Commit finished!')
+
+  if (confirmPush.value) {
+    consola.start('Push...')
+    await gitPush(branchName)
+    consola.success('Push finished!')
+  }
 }

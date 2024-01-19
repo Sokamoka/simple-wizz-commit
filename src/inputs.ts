@@ -1,12 +1,17 @@
+import type { PromptObject } from 'prompts'
 import type { InputParams } from './types/input-params'
 
 export function getInputs(defaults: InputParams) {
   return [
     {
-      type: 'number',
+      type: 'text',
       name: 'taskId',
       message: 'Task Id',
       initial: defaults.taskId,
+      validate: (text: string) => !/^\d+$/.test(text) ? 'The taskId can only contain numbers' : true,
+      onRender(this: any, color: any) {
+        this.rendered = color.cyan(this.rendered)
+      },
     },
     {
       type: 'select',
@@ -32,5 +37,5 @@ export function getInputs(defaults: InputParams) {
       message: 'Commit message',
       initial: defaults.message,
     },
-  ]
+  ] as PromptObject[]
 }
