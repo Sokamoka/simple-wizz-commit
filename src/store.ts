@@ -5,11 +5,7 @@ import type { InputParams } from './types/input-params'
 const store = new Conf({ projectName: name })
 
 export function setStoredData(key: string, params: InputParams) {
-  store.set({
-    wcommit: {
-      [key]: params,
-    },
-  })
+  store.set(getKey(name, key), params)
 }
 
 export function getStoredData(key: string) {
