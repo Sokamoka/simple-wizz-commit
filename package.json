@@ -1,7 +1,7 @@
 {
   "name": "wcommit",
   "type": "module",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Commit prompt for Wizz repo",
   "author": "Akos Stegner",
   "license": "ISC",
