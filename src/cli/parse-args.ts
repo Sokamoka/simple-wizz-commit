@@ -1,8 +1,8 @@
+import type { WCommitOptions } from '../types/w-commit-options'
 import process from 'node:process'
 import cac from 'cac'
 import { consola } from 'consola'
 import { version } from '../../package.json'
-import type { WCommitOptions } from '../types/w-commit-options'
 import { ExitCode } from './exit-code'
 
 /**

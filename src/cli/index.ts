@@ -1,11 +1,11 @@
 import process from 'node:process'
-import prompts from 'prompts'
 import { consola } from 'consola'
-import { wizzCommit } from '../wizz-commit'
+import prompts from 'prompts'
 import { version as packageVersion } from '../../package.json'
 import { clearStoredData } from '../store'
-import { parseArgs } from './parse-args'
+import { wizzCommit } from '../wizz-commit'
 import { ExitCode } from './exit-code'
+import { parseArgs } from './parse-args'
 
 /**
  * The main entry point of the CLI
@@ -31,8 +31,9 @@ export async function main(): Promise<void> {
         type: 'confirm',
         message: 'Are you sure?',
         initial: true,
-      }).then(r => r.yes))
+      }).then(r => r.yes)) {
         process.exit(1)
+      }
 
       clearStoredData()
 
