@@ -1,15 +1,15 @@
-import process from 'node:process'
-import prompts from 'prompts'
-import { defu } from 'defu'
 import type { PromptObject } from 'prompts'
-import { consola } from 'consola'
-import type { WCommitOptions } from './types/w-commit-options'
-import { getInputs } from './inputs'
-import { getBranchName, gitCommit, gitPush } from './git'
 import type { InputParams } from './types/input-params'
-import { deleteStoredData, getStoredData, setStoredData } from './store'
-import { InputParamsDefaults } from './config'
+import type { WCommitOptions } from './types/w-commit-options'
+import process from 'node:process'
+import { consola } from 'consola'
+import { defu } from 'defu'
+import prompts from 'prompts'
 import { ExitCode } from './cli/exit-code'
+import { InputParamsDefaults } from './config'
+import { getBranchName, gitCommit, gitPush } from './git'
+import { getInputs } from './inputs'
+import { deleteStoredData, getStoredData, setStoredData } from './store'
 
 export async function wizzCommit(arg: WCommitOptions) {
   const branchName = await getBranchName()
@@ -32,7 +32,7 @@ export async function wizzCommit(arg: WCommitOptions) {
   const inputs = getInputs(inputParams) as PromptObject[]
   const answers = await prompts(inputs)
 
-  const message = `#${answers.taskId} ${answers.type}(${branchName}): ${answers.message}`
+  const message = `${answers.type}: (${branchName})(ab#${answers.taskId}): ${answers.message}`
   consola.box(`git commit -m "${message}"`)
 
   const confirm = await prompts({

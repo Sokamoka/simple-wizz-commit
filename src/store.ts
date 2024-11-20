@@ -1,6 +1,6 @@
+import type { InputParams } from './types/input-params'
 import Conf from 'conf'
 import { name } from '../package.json'
-import type { InputParams } from './types/input-params'
 
 const store = new Conf({ projectName: name })
 

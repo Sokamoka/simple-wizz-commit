@@ -23,7 +23,7 @@
     "dist"
   ],
   "engines": {
-    "node": ">=14.16"
+    "node": ">=20.11"
   },
   "scripts": {
     "lint": "eslint .",
@@ -35,20 +35,20 @@
   },
   "dependencies": {
     "@jsdevtools/ez-spawn": "^3.0.4",
-    "conf": "^11.0.2",
+    "conf": "^13.0.1",
     "consola": "^3.2.3",
     "defu": "^6.1.4",
     "prompts": "^2.4.2"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.6.2",
-    "@types/node": "^20.11.0",
+    "@antfu/eslint-config": "^3.9.2",
+    "@types/node": "^22.9.1",
     "@types/prompts": "^2.4.9",
-    "bumpp": "^9.2.1",
+    "bumpp": "^9.8.1",
     "cac": "^6.7.14",
-    "eslint": "^8.56.0",
-    "esno": "^4.0.0",
-    "tsup": "^8.0.1",
-    "typescript": "^5.3.3"
+    "eslint": "^9.15.0",
+    "esno": "^4.8.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3"
   }
 }
