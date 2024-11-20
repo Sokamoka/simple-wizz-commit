@@ -28,6 +28,21 @@ export function getInputs(defaults: InputParams) {
           description: 'This commit is an incident fix',
           value: 'fix',
         },
+        {
+          title: 'chore',
+          description: 'This commit is a chore commit',
+          value: 'chore',
+        },
+        {
+          title: 'refactor',
+          description: 'This commit is a refactor commit',
+          value: 'refactor',
+        },
+        {
+          title: 'test',
+          description: 'This commit is a unit test commit',
+          value: 'test',
+        },
       ],
       initial: defaults.type,
     },
