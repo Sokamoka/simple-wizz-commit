@@ -32,7 +32,7 @@ export async function wizzCommit(arg: WCommitOptions) {
   const inputs = getInputs(inputParams) as PromptObject[]
   const answers = await prompts(inputs)
 
-  const message = `${answers.type}: (ab#${answers.taskId}): ${answers.message}`
+  const message = `${answers.type}(ab#${answers.taskId}): ${answers.message}`
   consola.box(`git commit -m "${message}"`)
 
   const confirm = await prompts({
